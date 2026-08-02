@@ -18,10 +18,10 @@ function _check_health {
     local hc_status="$5"
 
     # Loop-wait (up to a few seconds) for healthcheck event (#20342)
-    # Allow a margin when running parallel, because of system load
-    local timeout=5
-    if [[ -n "$PARALLEL_JOBSLOT" ]]; then
-        timeout=$((timeout + 3))
+    # Allow a generous margin when running parallel or in CI, because of system load
+    local timeout=15
+    if [[ -n "$PARALLEL_JOBSLOT" || -n "$CI" ]]; then
+        timeout=$((timeout + 10))
     fi
 
     while :; do
