@@ -1220,7 +1220,7 @@ func ConvertVolume(volume *parser.UnitFile, unitsInfoMap map[string]*UnitInfo, i
 
 	service.AddCmdline(ServiceGroup, "ExecStart", podman.Args)
 
-	defaultOneshotServiceGroup(service, true)
+	defaultOneshotServiceGroup(service, false)
 
 	// Store the name of the created resource
 	unitInfo.ResourceName = volumeName
